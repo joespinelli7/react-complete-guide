@@ -40,7 +40,7 @@
 // export default app;
 
 import React, { Component } from 'react';
-import './App.css';
+import classes from './App.css';
 import Person from './Person/Person';
 
 class App extends Component {
@@ -133,18 +133,18 @@ class App extends Component {
       style.backgroundColor = 'red'
     }
 
-    const classes = [];
+    const assignedClasses = [];
     if (this.state.people.length <= 2) {
-      classes.push('red');
+      assignedClasses.push(classes.red);
     }
     if (this.state.people.length <= 1) {
-      classes.push('bold');
+      assignedClasses.push(classes.bold);
     }
 
     return (
-      <div className="App">
+      <div className={classes.App}>
         <h1>Hi, I'm a React App</h1>
-        <p className={classes.join(' ')}>This is really working!</p>
+        <p className={assignedClasses.join(' ')}>This is really working!</p>
         <button
           onClick={this.togglePeopleHandler}
           style={style}
