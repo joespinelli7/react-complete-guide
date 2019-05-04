@@ -1,8 +1,11 @@
-import React from 'react'
+import React, { PureComponent } from 'react'
 import Person from './Person/Person'
 
 // if returning in one line you can write arrow function as such (ES6 notation), const example = () => ( {code here})
-class People extends React.Component {
+
+// PureComponent is just a normal component that automatically implements shouldComponentUpdate w/ a
+// complete props check so that it checks for any changes to any prop in that component
+class People extends PureComponent {
   // static getDerivedStateFromProps(props, state) {
   //   console.log('[People.js] getDerivedStateFromProps')
   //   return state;
@@ -12,14 +15,18 @@ class People extends React.Component {
   //   console.log('[People.js] componentWillReceiveProps', props)
   // }
 
-  shouldComponentUpdate(nextProps, nextState) {
-    console.log('[People.js] shouldComponentUpdate')
-    if (nextProps.people !== this.props.people) {
-      return true;
-    } else {
-      return false;
-    }
-  }
+  // shouldComponentUpdate(nextProps, nextState) {
+  //   console.log('[People.js] shouldComponentUpdate')
+  //   if (
+  //     nextProps.people !== this.props.people ||
+  //     nextProps.changed !== this.props.changed ||
+  //     nextProps.clicked !== this.props.clicked
+  //   ) {
+  //     return true;
+  //   } else {
+  //     return false;
+  //   }
+  // }
 
   getSnapshotBeforeUpdate() {
     console.log('[People.js] getSnapshotBeforeUpdate')
