@@ -3,9 +3,25 @@ import classes from './Cockpit.css'
 
 const cockpit = (props) => {
   // used for implementing lifecycle hooks (componentDidMount, etc.)
+  // can use as many useEffects as you want, for different data
   useEffect(() => {
     console.log('[Cockpit.js] useEffect')
     // Http request...
+    setTimeout(() => {
+      alert('Saved data to cloud!')
+    }, 1000)
+    return () => {
+      console.log('[Cockpit.js] cleanup work in useEffect')
+    };
+  }, [])
+  // takes an argument of [] that makes it only run once but if you input info [people.js] it will
+  // only run when that component is used/affected
+
+  useEffect(() => {
+    console.log('[Cockpit.js] 2nd useEffect')
+    return () => {
+      console.log('[Cockpit.js] cleanup work in 2nd useEffect')
+    };
   })
 
   const assignedClasses = [];
@@ -14,10 +30,10 @@ const cockpit = (props) => {
     btnClass = classes.Red;
   }
 
-  if (props.people.length <= 2) {
+  if (props.peopleLength <= 2) {
     assignedClasses.push(classes.red);
   }
-  if (props.people.length <= 1) {
+  if (props.peopleLength <= 1) {
     assignedClasses.push(classes.bold);
   }
 
@@ -35,4 +51,6 @@ const cockpit = (props) => {
   )
 }
 
-export default cockpit
+// React.memo is a technique is which React stores a snapshot of the component and will only re-render it
+// if any changes made to that specific component otherwise it will send back original snapshot
+export default React.memo(cockpit)
