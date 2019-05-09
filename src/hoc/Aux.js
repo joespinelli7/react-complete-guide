@@ -7,7 +7,10 @@ const aux = props => props.children;
 
 export default aux;
 
+// or you can use built in <React.fragment> to do the same thing as Aux.
+// just input it wherever you'd input <Aux> </Aux> (<React.Fragment> </React.Fragment>)
 // Example:
+// import Aux from './Aux'
 // class Person extends React.Component {
 //   render () {
 //     console.log('[Person.js] rendering...')

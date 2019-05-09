@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import classes from './Cockpit.css'
 
 const cockpit = (props) => {
-  // used for implementing lifecycle hooks (componentDidMount, etc.)
+  // useEffect() used for implementing lifecycle hooks (componentDidMount, etc.)
   // can use as many useEffects as you want, for different data
   useEffect(() => {
     console.log('[Cockpit.js] useEffect')
