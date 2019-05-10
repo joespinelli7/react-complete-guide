@@ -164,8 +164,8 @@ class App extends Component {
       )
     }
 
-    // line 172 AuthContext.Provider sets up key-values pairs for AuthContext.Consumer to manipulate
-    // in other components that need the info
+    // line 172 AuthContext.Provider takes from auth-context file and sets up key-values pairs for
+    // AuthContext.Consumer to manipulate in other components that need the info
 
     return (
       <Aux>
