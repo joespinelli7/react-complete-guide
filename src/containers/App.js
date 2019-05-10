@@ -60,7 +60,8 @@ class App extends Component {
     ],
     otherState: 'some other value',
     showPeople: false,
-    showCockpit: true
+    showCockpit: true,
+    changeCounter: 0
   };
 
   static getDerivedStateFromProps(props, state) {
@@ -111,10 +112,16 @@ class App extends Component {
     const people = [...this.state.people];
     people[personIndex] = updatePerson
 
-    this.setState({
-      people: people
-    })
-  }
+    // when using old State, setState can take 2 arguments, first is previous state and second is current props
+    // using prevState to change state guarantees that it will be actual previous state
+    // and re-render correctly.
+    this.setState((prevState, props) => {
+      return {
+        people: people,
+        changeCounter: prevState.changeCounter + 1
+      };
+    });
+  };
 
   deletePersonHandler = (personIndex) => {
     // const people = this.state.people.slice();
@@ -156,7 +163,9 @@ class App extends Component {
           showPeople={this.state.showPeople}
           peopleLength={this.state.people.length}
           clicked={this.togglePeopleHandler}
-        /> : null}
+        />
+        :
+        null}
         {people}
       </Aux>
     );
