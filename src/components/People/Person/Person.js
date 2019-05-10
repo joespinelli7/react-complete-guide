@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import classes from './Person.css';
 import Aux from '../../../hoc/Aux';
 import withClass from '../../../hoc/withClass';
+import AuthContext from '../../../context/auth-context';
 
 class Person extends React.Component {
   constructor(props) {
@@ -15,10 +16,19 @@ class Person extends React.Component {
     this.inputElementRef.current.focus();
   }
 
+  // only wrap line 28 in AuthContext.Consumer b/c its the only part of component relying on
+  // authenticated state, other parts of component don't care about it. Has access to context.authenticated
+  // from App.js where AuthContext.Provider sets key-values pairs to be accessible
+
   render () {
     console.log('[Person.js] rendering...')
     return (
       <Aux>
+        <AuthContext.Consumer>
+          {(context) =>
+            context.authenticated ? <p>Authenticated</p> : <p>Please log in!</p>
+          }
+        </AuthContext.Consumer>
         <p key='i1' onClick={this.props.click}>I'm {this.props.name} and I am {this.props.age} years old:)</p>
         <p key='i2'>{this.props.children}</p>
         <input

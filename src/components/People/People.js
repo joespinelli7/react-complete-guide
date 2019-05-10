@@ -53,7 +53,7 @@ class People extends PureComponent {
           click={() => this.props.clicked(index)}
           changed={(e) => this.props.changed(e, person.id)}
         />
-      )
+      );
     })
   }
 }
